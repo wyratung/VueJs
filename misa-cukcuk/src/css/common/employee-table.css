@@ -1,0 +1,17 @@
+.content__stafftable{
+    height: calc(100vh - 225px);
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+.row--selected{
+    background-color:  #f65454 !important;
+}
+.text-align-left{
+    text-align: left;
+}
+.text-align-right{
+    text-align: right;
+}
+.text-align-center{
+    text-align: center;
+}

@@ -1,0 +1,198 @@
+#list {
+    height: cacl(100vh-47px);
+    flex: 1;
+    margin: 12px;
+    display: block;
+    background-color: #E9EBEE;
+    user-select: none;
+}
+
+.top-of-list {
+    display: flex;
+    height: 40px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.add-att {
+    display: flex;
+    align-items: center;
+}
+
+.wrapper-btn{
+    display: flex;
+}
+
+.del-att{
+    line-height:40px ;
+    margin-right: 8px;
+    background-color: rgb(238, 41, 41);
+    display: none;
+}
+
+.del-att:hover{
+    background-color: gray;
+}
+.add-mems-icon {
+    background-image: url('../../assets/icon/add.png');
+    height: 18px;
+    width: 18px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 8px;
+}
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    width: 100%;
+    margin-bottom: 24px;
+    /* background-color: rgb(0, 217, 255); */
+}
+
+.search_places {
+    height: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search_places__code {
+    height: 40px;
+    width: 320px;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-left: 40px;
+    background-image: url('../../assets/icon/search.png');
+    background-position-y: center;
+    background-position-x: 16px;
+    border: 1px solid #BBBBBB;
+}
+
+.search_places__department {
+    margin-left: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-weight: normal ;
+    width: 200px;
+}
+
+.search_places__department_text {
+    margin-left: 16px;
+}
+
+.search_places__position_text {
+    margin-left: 16px;
+}
+
+.search_places__department .dropdown-header-wrapper i{
+    border-left: 1px solid #BBBBBB;
+    line-height: 40px;
+    padding-left: 12px;
+}
+
+.search_places__position {
+    font-weight: normal;
+    margin-left: 8px;
+    width: 150px;
+}
+
+.search_places__position .dropdown-header-wrapper i{
+    border-left: 1px solid #BBBBBB;
+    line-height: 40px;
+    padding-left: 12px;
+}
+
+.refresh {
+    height: 40px;
+    width: 40px;
+    border-radius: 4px;
+    border: 1px solid #BBBBBB;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.refresh:hover{
+    background-color: #BBB ;
+}
+
+.refresh-icon {
+    height: 20px;
+    width: 20px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('../../assets/icon/refresh.png');
+    cursor: pointer;
+}
+
+.grid {
+    box-sizing: border-box;
+    width: 100%;
+    /* height: calc(100%-47px -40px -8px -16px -56px -24px); */
+    height: calc(100vh-190px);
+}
+
+.employees-title {
+    position: sticky;
+    top: 0;
+}
+
+
+/* table */
+
+.grid {
+    box-sizing: border-box;
+    overflow-y: scroll;
+    height: 530px;
+    background-color: #fff;
+}
+
+table {
+    padding-top: 16px;
+    border-collapse: collapse;
+    width: 100%;
+    
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+table tbody tr {
+    width: 100%;
+    height: calc((100vh - 280px)/10);
+    border-bottom: 1px solid #ccc;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.active {
+    background-color: #019160;
+    color: #fff;
+}
+
+table thead {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    white-space: nowrap;
+}
+
+table tbody {
+    white-space: nowrap;
+    overflow-y: scroll;
+}
+
+tbody tr:hover {
+    background-color: #2fbe8e;
+}
+

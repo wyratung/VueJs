@@ -9,7 +9,7 @@
         ref="input"
         v-bind="$attrs"
         v-on="inputListeners"
-        :tabindex="tabIndex"
+        :tabIndex="tabIndex"
       />
     </div>
     <div class="text--red"></div>

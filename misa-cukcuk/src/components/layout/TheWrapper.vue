@@ -94,8 +94,7 @@ export default {
     },
     /**
      * load lại dữ liệu trong bảng
-     * author: nvdien(6/8/2021)
-     * modified: nvdien(6/8/2021)
+     
      */
     loadTable() {
       this.$refs.employeeList.loadTable();

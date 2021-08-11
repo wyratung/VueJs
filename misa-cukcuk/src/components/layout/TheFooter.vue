@@ -1,6 +1,11 @@
 <template>
   <div id="footer">
-        <p>Hiển thị 1-10/1000 nhân viên</p>
+        <div  style="display: flex;">
+            <p>Hiển thị </p>
+            <p style="font-weight:bolder;margin:0 5px">1-10/1000</p>
+            <p> nhân viên</p>
+        </div>
+        
         <div class="footer-button">
           <i class="fas fa-chevron-left footer-button"></i>
           <i class="fas fa-angle-double-left footer-button"></i>
@@ -19,7 +24,12 @@
           <i class="fas fa-angle-right footer-button"></i>
           <i class="fas fa-angle-double-right footer-button"></i>
         </div>
-        <p>10 nhân viên/trang</p>
+        <div style="display: flex;">
+          <p style="font-weight:bolder;margin:0 5px">10 </p>
+          
+          <p> nhân viên/trang</p>
+        </div>
+        
       </div>
 </template>
 

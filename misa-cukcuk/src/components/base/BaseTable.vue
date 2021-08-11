@@ -44,7 +44,7 @@
 </template>
 
 <script>
-export default {};
+
 </script>
 
 <style scoped>
@@ -100,13 +100,12 @@ export default {
         this.clicks = 0;
         //show form staff
         self.editEmployee( self.tableContents[index]);
+        
       }
     },
     /**
      * @param {}  self: component hiện tại
      * @param {Object} employeeData chứa dữ liệu nhân viên
-     
-     * modified: nvdien(5/8/2021)
      */
     editEmployee( employeeData) {
       this.$emit("editEmployee", employeeData);
@@ -140,6 +139,7 @@ export default {
       if (position == -1) {
         this.listSelectedRow.push(index);
         this.listSelectedEmployees.push(this.tableContents[index]);
+        
       } else {
         this.listSelectedRow.splice(position, 1);
         this.listSelectedEmployees.splice(this.tableContents[index], 1);
@@ -163,6 +163,8 @@ export default {
      */
     formatTableContent(tableContent, tableHeader) {
       let cellData = tableContent[Object.keys(tableHeader)[0]];
+
+      
       let typeFormat = Object.values(tableHeader)[1];
       if (typeFormat === "1") {
         // định dạng ngày

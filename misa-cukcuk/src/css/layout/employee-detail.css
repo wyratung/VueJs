@@ -154,7 +154,7 @@
 form staff footer */
 .formstaff-footer{
     height: 60px;
-    
+    background-color: #E9EBEE;
     display: flex;
     justify-content:flex-end;
     align-items: center;
@@ -226,6 +226,6 @@ input.salary-value{
 }
 
 .btn-exit{
-    background-color: #f65454;
+    background-color: white;
 }
 

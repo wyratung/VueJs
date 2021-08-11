@@ -107,19 +107,18 @@ export default {
     /**
      * truyền dữ liệu chứa các khóa chính của nhân viên được xóa
      * @param {array} listSelectedEmployees : chứa các khóa chính của nhân viện được chọn
-     * author: nvdien(6/8/2021)
-     * modified: (6/8/2021)
+     
+     
      */
     deleteEmployees(listSelectedEmployees) {
-      console.log(listSelectedEmployees);
+  //console.log(listSelectedEmployees);
       eventBus.$emit("deleteEmployees", listSelectedEmployees);
       this.$emit("showPopup");
     },
     /**
      * xóa dữ liệu ở ô input của combobox
      * @param {Int} type xác định loại combobox 1(deparment), 2(position)
-     * author: nvdien(7/8/2021)
-     * modified: nvdien(7/8/2021)
+     
      */
     clearComboboxValue(type) {
       if (type == "department") {
@@ -134,7 +133,7 @@ export default {
         this.comboboxDepartmentValue = selectedValue;
       }
       if (type == "position") {
-        console.log("dlafo");
+        
         this.comboboxPositionValue = selectedValue;
       }
     },

@@ -174,9 +174,9 @@ export default {
   components: {
     BaseInput,
   },
-  mounted() {
-    this.$refs.employeeCodeInput.focusInput();
-  },
+  // mounted() {
+  //   this.$refs.employeeCodeInput.focusInput();
+  // },
   props: {
     employeeData: {
       type: Object,

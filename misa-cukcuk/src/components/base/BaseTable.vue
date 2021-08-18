@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper-data">
     <div class="grid" id="grid">
-      <table>
+      <table style="cursor:poiter; user-select:none">
         <thead>
           <tr>
             <th></th>

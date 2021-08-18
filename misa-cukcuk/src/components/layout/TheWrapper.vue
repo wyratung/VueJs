@@ -1,7 +1,7 @@
 <template>
   <div style="display: flex">
     <the-menu/>
-    <employee-list
+    <employee-list  
       @addEmployee="addEmployee"
       @editEmployee="editEmployee"
       ref="employeeList"
@@ -69,7 +69,7 @@ export default {
      * hiển thị form thêm nhân viên
      * @param {Object} employeeCode chứa mã code nhân viên mới
    
-     * modified: 5/8/2021
+     
      */
     addEmployee(employeeCode) {
       this.isHide = false;

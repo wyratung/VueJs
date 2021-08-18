@@ -72,6 +72,7 @@ export default {
     contentText() {
       let listData = this.listData;
       let listEmployeeCode;
+      
       if (listData.length == 1) {
         listEmployeeCode = listData[0].EmployeeCode;
       }

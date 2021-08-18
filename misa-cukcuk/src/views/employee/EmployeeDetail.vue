@@ -3,7 +3,9 @@
     <div class="formstaff">
       <div class="formstaff-header">
         <div class="formstaff-header__label">THÔNG TIN NHÂN VIÊN</div>
-        <button class="close btn-exit"  @click="closeFormStaff"> <i class="fas fa-times"></i></button>
+        <button class="close btn-exit" @click="closeFormStaff">
+          <i class="fas fa-times"></i>
+        </button>
       </div>
       <div class="formstaff-body">
         <div class="formstaff-avatar">
@@ -25,27 +27,46 @@
                 tabIndex="1"
                 ref="employeeCodeInput"
                 :required="true"
+                
                 v-model="employeeDetailData['EmployeeCode']"
                 :inputCheck="inputCheck"
+                v-on:handleInput="handleInput"
+                :value="employeeDetailData['EmployeeCode']"
               />
             </div>
             <div class="form-block">
               <base-input
                 label="Họ và tên"
                 tabIndex="2"
+                @input="input"
                 v-model="employeeDetailData['FullName']"
                 :required="true"
                 :inputCheck="inputCheck"
+                v-on:focus.native="onFocus"
               />
             </div>
           </div>
 
           <div class="inline-block">
             <div class="form-block">
-              <base-input label="Ngày sinh" tabIndex="3" type="date" v-model="employeeDetailData['DateOfBirth'] "/>
+              <base-input
+                label="Ngày sinh"
+                tabIndex="3"
+                type="date"
+                v-on:handleInput="handleInput"
+                v-bind:value="
+                  formatDate(employeeDetailData['DateOfBirth'], '-')
+                "
+              />
             </div>
             <div class="form-block">
-              <base-input label="Giới tính" tabIndex="4" />
+              <base-input
+                label="Giới tính"
+                tabIndex="4"
+                v-model="employeeDetailData['GenderName']"
+                v-on:handleInput="handleInput"
+                :value="employeeDetailData['GenderName']"
+              />
             </div>
           </div>
           <div class="inline-block">
@@ -56,11 +77,19 @@
                 tabIndex="5"
                 :required="true"
                 v-model="employeeDetailData['IdentityNumber']"
+                :value="employeeDetailData['IdentityNumber']"
                 :inputCheck="inputCheck"
+                v-on:handleInput="handleInput"
               />
             </div>
             <div class="form-block">
-              <base-input label="Ngày cấp" type="date" tabIndex="6" />
+              <base-input
+                label="Ngày cấp"
+                type="date"
+                tabIndex="6"
+                v-on:handleInput="handleInput"
+                v-bind:value="formatDate(employeeDetailData['JoinDate'], '-')"
+              />
             </div>
           </div>
           <div id="staff-place" style="width: 285.5px">
@@ -68,6 +97,8 @@
               label="Nơi cấp"
               type="text"
               tabIndex="7"
+              v-on:handleInput="handleInput"
+              :value="employeeDetailData['IdentityPlace']"
               v-model="employeeDetailData['IdentityPlace']"
             />
           </div>
@@ -78,6 +109,8 @@
                 type="text"
                 tabIndex="8"
                 :required="true"
+                v-on:handleInput="handleInput"
+                :value="employeeDetailData['Email']"
                 v-model="employeeDetailData['Email']"
                 :inputCheck="inputCheck"
               />
@@ -88,6 +121,8 @@
                 type="text"
                 tabIndex="9"
                 :required="true"
+                v-on:handleInput="handleInput"
+                :value="employeeDetailData['PhoneNumber']"
                 v-model="employeeDetailData['PhoneNumber']"
                 :inputCheck="inputCheck"
               />
@@ -104,6 +139,8 @@
                 label="Vị trí"
                 type="text"
                 tabIndex="12"
+                v-on:handleInput="handleInput"
+                :value="employeeDetailData['PositionName']"
                 v-model="employeeDetailData['PositionName']"
               />
             </div>
@@ -113,7 +150,9 @@
                 label="Phòng ban"
                 type="text"
                 tabIndex="12"
+                v-on:handleInput="handleInput"
                 v-model="employeeDetailData['DepartmentName']"
+                :value="employeeDetailData['DepartmentName']"
               />
             </div>
           </div>
@@ -123,11 +162,19 @@
                 label="Mã số thuế cá nhân"
                 type="text"
                 tabIndex="12"
+                v-on:handleInput="handleInput"
                 v-model="employeeDetailData['PersonalTaxCode']"
+                :value="employeeDetailData['PersonalTaxCode']"
               />
             </div>
             <div class="form-block block-salary">
-              <base-input label="Mức lương cơ bản" type="text" tabIndex="13" v-model="employeeDetailData['Salary']"/>
+              <base-input
+                label="Mức lương cơ bản"
+                type="text"
+                tabIndex="13"
+                v-on:handleInput="handleInput"
+                :value="formatMoney(employeeDetailData['Salary'])"
+              />
             </div>
           </div>
           <div class="inline-block">
@@ -136,6 +183,10 @@
                 label="Ngày gia nhập công ty"
                 type="date"
                 tabIndex="14"
+                v-on:handleInput="handleInput"
+                v-bind:value="
+                  formatDate(employeeDetailData['CreatedDate'], '-')
+                "
               />
             </div>
             <div class="form-block">
@@ -149,8 +200,13 @@
         </div>
       </div>
       <div class="formstaff-footer">
-        <button class=" button-cancel button button-short button">Hủy</button>
-        <button class="button button-save " @click="saveEmployeeData">
+        <button
+          class="button-cancel button button-short button"
+          @click="closeFormStaff"
+        >
+          Hủy
+        </button>
+        <button class="button button-save" @click="saveEmployeeData">
           <div class="btn-icon btn-save"></div>
           <div class="btn-text">Lưu</div>
         </button>
@@ -165,18 +221,19 @@
 
 <script>
 import BaseInput from "../../components/base/BaseInput.vue";
-//  import CommonMethods from "../../mixins/CommonMethods.js";
+import CommonMethods from "../../mixins/CommonMethods.js";
 import Vue from "vue";
 import axios from "axios";
 export default {
   name: "EmployeeDetail",
-  // mixins: [CommonMethods],
+  mixins: [CommonMethods],
   components: {
     BaseInput,
+    // BaseCombobox,
   },
-  // mounted() {
-  //   this.$refs.employeeCodeInput.focusInput();
-  // },
+  mounted() {
+    this.$refs.employeeCodeInput.focusInput();
+  },
   props: {
     employeeData: {
       type: Object,
@@ -194,9 +251,16 @@ export default {
   data() {
     return {
       employeeDetailData: Vue.util.extend({}, this.employeeData),
+      inputCheck: false,
     };
   },
   methods: {
+    input(e){
+      console.log(e);
+    },
+    handleInput(e) {
+      console.log(e.target.value);
+    },
     async postEmployee(requestMode, employeeData) {
       try {
         let response;
@@ -207,9 +271,11 @@ export default {
           );
         }
         if (requestMode == "PUT") {
+          console.log(
+            `http://cukcuk.manhnv.net/v1/Employees/${employeeData["EmployeeId"]}`
+          );
           response = await axios.put(
-            `http://cukcuk.manhnv.net/v1/Employees/` +
-              employeeData["EmployeeId"],
+            `http://cukcuk.manhnv.net/v1/Employees/${employeeData["EmployeeId"]}`,
             employeeData
           );
         }
@@ -218,39 +284,62 @@ export default {
       } catch (error) {
         if (error.response.status == "404") {
           console.log("Not found API url");
-        }else{
+        } else {
           console.log(error);
         }
       }
     },
-    
+    /**
+     *load lại dữ liệu trong bảng
+     */
     loadTable() {
       this.$emit("loadTable");
     },
-    
+
     closeFormStaff() {
       this.$emit("closeFormStaff");
     },
-    /**
-     * thêm mới hoặc sửa thông tin nhân viên
-     */
+
+    formatDetailData(data) {
+      return this.formatDate(data, "/");
+    },
+
     async saveEmployeeData() {
-      if (this.mode == "1") {
-        //thêm mới nhân viên
-        console.log(this.employeeDetailData);
-        await this.postEmployee("POST", this.employeeDetailData);
+      //check validate form
+      let test = this.validateBeforeSave();
+      if (test) {
+        if (this.mode == "1") {
+          //thêm mới nhân viên
+          await this.postEmployee("POST", this.employeeDetailData);
+          console.log(this.employeeDetailData);
+        }
+        if (this.mode == "2") {
+          //sửa nhân viên
+          await this.postEmployee("PUT", this.employeeDetailData);
+          console.log(this.employeeDetailData);
+        }
+        //Hiện thông báo thêm thành công
+        //Close form
+        this.closeFormStaff();
+        //load lại table
+        this.loadTable();
+      } else {
+        console.log("can't save");
       }
-      if (this.mode == "2") {
-        //sửa nhân viên
-        console.log("sửa");
-        await this.postEmployee("PUT", this.employeeDetailData);
+    },
+    validateBeforeSave() {
+      if (
+        this.employeeDetailData["FullName"] == "" ||
+        this.employeeDetailData["EmployeeCode"] == "" ||
+        this.employeeDetailData["Email"] == "" ||
+        this.employeeDetailData["PhoneNumber"] == "" ||
+        this.employeeDetailData["IdentityNumber"] == ""
+      ) {
+        console.log("inputNotCheck");
+        this.inputCheck = !this.inputCheck;
+        return false;
       }
-      //Hiện thông báo thêm thành công
-      //Close form
-      this.closeFormStaff();
-      //load lại table
-      this.loadTable();
-      console.log(this.employeeDetailData["EmployeeCode"]);
+      return true;
     },
   },
 };
